@@ -1,0 +1,18 @@
+npm init -y 
+npm i express mongoose dotenv mailtrap jsonwebtoken cookie-parser bcryptjs cloudinary
+npm i nodemon -D 
+
+in package.json modified 
+
+
+"main": "backend/server.js",
+ "scripts": {
+    "dev": "nodemon backend/server.js",
+    "start": "node backend/server.js"
+  },
+  "type": "module"
+
+
+mailtrap 
+  go to sending domains and select the integration  - transactional stream
+  select api  , node js sdk and copy code 
