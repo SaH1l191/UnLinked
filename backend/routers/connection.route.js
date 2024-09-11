@@ -24,8 +24,7 @@ router.get("/requests", protectRoute, getConnectionRequests);
 router.get("/", protectRoute, getUserConnections);
 router.delete("/:userId", protectRoute, removeConnection);
 router.get("/status/:userId", protectRoute, getConnectionStatus);
-
-
+// /represents the ID of the user for whom you want to check the connection status relative to the currently authenticated user.
 
 export default router;
 
