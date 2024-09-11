@@ -13,8 +13,9 @@ const router = express.Router();
 
 
 
-//userId - to whom we are sending the connection request
+//userId - to whom we are sent the connection request
 router.post("/request/:userId", protectRoute, sendConnectionRequest);
+// actual ID of the connection request that you want to accept.
 router.put("/accept/:requestId", protectRoute, acceptConnectionRequest);
 router.put("/reject/:requestId", protectRoute, rejectConnectionRequest);
 // Get all connection requests for the current user
