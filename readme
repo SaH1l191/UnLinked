@@ -16,3 +16,9 @@ in package.json modified
 mailtrap 
   go to sending domains and select the integration  - transactional stream
   select api  , node js sdk and copy code 
+
+
+
+
+in frontend 
+datefns for date formatting in frontend post 

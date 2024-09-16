@@ -6,7 +6,7 @@ import { sendCommentNotificationEmail } from "../emails/emailHandlers.js";
 export const getFeedPosts = async (req, res) => {
     try {
         //we need additional details of the user who posted ie its name , 
-        const posts = await Post.find({ author: { $in: req.user.connections } })
+        const posts = await Post.find({ author: { $in: [...req.user.connections, req.user._id] } })
             .populate("author", "name headline profileProfile username")
             //going under the author of the post and populating the author of post ,name ,profilePicture
             .populate("comments.user", "name profilePicture").sort({ createdAt: -1 })
@@ -31,7 +31,7 @@ export const createPost = async (req, res) => {
             newPost = new Post({
                 author: req.user._id,
                 content,
-                image: imgResult
+                image: imgResult.secure_url
             })
         } else {
             newPost = new Post({
@@ -83,9 +83,9 @@ export const getPostById = async (req, res) => {
         const postId = req.params.id;
         const post = await Post.findById(postId)
             .populate("author", "name username profilePicture headline")
-            .populate("comments.user", "name profilePicture ")
+            .populate("comments.user", "name profilePicture username headline");
 
-        res.status(200).json(post)
+        res.status(200).json(post);
     }
     catch (error) {
         console.log("Error in Get Post By Id Controller = > ", error.message)

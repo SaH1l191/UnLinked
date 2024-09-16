@@ -1,6 +1,6 @@
 import ConnectionRequest from '../models/connectionRequest.js';
-
-
+import User from '../models/user.model.js'
+import Notification from '../models/notification.model.js'
 
 
 

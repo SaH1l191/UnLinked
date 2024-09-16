@@ -13,7 +13,7 @@ export const getUserNotifications = async (req, res) => {
             .populate("relatedUser", "name username profilePicture")
             .populate("relatedPost", "content image")
 
-        res.status(200).json({ notifications })
+        res.status(200).json( notifications )
 
     }
     catch (error) {
