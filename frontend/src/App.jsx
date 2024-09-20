@@ -8,14 +8,15 @@ import toast, { Toaster } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "./lib/axios";
 import PostPage from "./pages/PostPage";
-
+import NotifcationsPage from "./pages/NotifcationsPage";
+import NetworkPage from "./pages/NetworkPage";
 function App() {
 	const { data: authUser, isLoading } = useQuery({
 		queryKey: ["authUser"],
 		queryFn: async () => {
 			try {
 				const res = await axiosInstance.get("/auth/me");
-        console.log('logging res => auth user   = > ', res)
+				console.log('logging res => auth user   = > ', res)
 				return res.data;
 			} catch (err) {
 				if (err.response && err.response.status === 401) {
@@ -34,8 +35,8 @@ function App() {
 				<Route path='/' element={authUser ? <HomePage /> : <Navigate to={"/login"} />} />
 				<Route path='/signup' element={!authUser ? <SignUpPage /> : <Navigate to={"/"} />} />
 				<Route path='/login' element={!authUser ? <LoginPage /> : <Navigate to={"/"} />} />
-				{/* <Route path='/notifications' element={authUser ? <NotificationsPage /> : <Navigate to={"/login"} />} />
-				<Route path='/network' element={authUser ? <NetworkPage /> : <Navigate to={"/login"} />} /> */}
+				<Route path='/notifications' element={authUser ? <NotifcationsPage /> : <Navigate to={"/login"} />} />
+				<Route path='/network' element={authUser ? <NetworkPage /> : <Navigate to={"/login"} />} /> 
 				<Route path='/post/:postId' element={authUser ? <PostPage /> : <Navigate to={"/login"} />} />
 				{/* <Route path='/profile/:username' element={authUser ? <ProfilePage /> : <Navigate to={"/login"} />} /> */}
 			</Routes>
