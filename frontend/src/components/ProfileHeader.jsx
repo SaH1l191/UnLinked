@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import React, { useMemo, useState } from 'react'
 import { axiosInstance } from '../lib/axios'
-import { Camera, MapPin, UserPlus } from "lucide-react"
+import { Camera, MapPin, UserCheck, UserPlus, X } from "lucide-react"
 const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 
 

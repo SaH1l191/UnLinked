@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 5000;
 			credentials: true,
 		})
 	);
-
+app.use(express.json({ limit: "15mb" }));
 app.use(express.json())
 app.use(cookieParser());
 app.use("/api/v1/auth", authRoutes)
