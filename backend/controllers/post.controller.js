@@ -162,19 +162,23 @@ export const likePost = async (req, res) => {
         }
         else {
             post.likes.push(userId)
-        }
+            //create  notification if the post owner is not the user who liked
+            if (post.author.toString() !== userId.toString()) {
+                const newNotification = new Notification({
+                    recipient: post.author,
+                    type: "like",
+                    relatedUser: userId,
+                    relatedPost: postId,
+                });
 
-        //create  notification if the post owner is not the user who liked
-        if (post.author.toString() !== userId.toString()) {
-            const newNotification = new Notification({
-                recipient: post.author,
-                type: "like",
-                relatedUser: userId,
-                relatedPost: postId,
-            });
+                await newNotification.save();
+            }
 
-            await newNotification.save();
         }
+        await post.save();
+
+        res.status(200).json(post);
+
 
     }
     catch (error) {

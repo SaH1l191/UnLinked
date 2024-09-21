@@ -39,7 +39,7 @@ const HomePage = () => {
 					<Post key={post._id} post={post} />
 				))}
 				
-				{true && (
+				{posts?.length===0 && (
 					<div className='p-8 text-center bg-white rounded-lg shadow'>
 						<div className='mb-6'>
 							<Users size={64} className='mx-auto text-blue-500' />

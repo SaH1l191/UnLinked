@@ -17,7 +17,10 @@ const NetworkPage = () => {
     const { data: connections } = useQuery({
 		queryKey: ["connections"],
 		queryFn: () => axiosInstance.get("/connections"),
+		
 	});
+	console.log("conections logging", connections)
+	
 
 
 
