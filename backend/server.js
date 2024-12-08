@@ -15,14 +15,7 @@ dotenv.config();
 // Get current directory for static file serving
 const __dirname = path.resolve();
 
-if (process.env.NODE_ENV !== "production") {
-	app.use(
-		cors({
-			origin: "http://localhost:5173",
-			credentials: true,
-		})
-	);
-}
+
 
 const app = express();
 
