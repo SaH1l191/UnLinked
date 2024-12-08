@@ -7,6 +7,7 @@ import Notification from '../models/notification.model.js'
 export const sendConnectionRequest = async (req, res) => {
     try {
         const { userId } = req.params
+        // also can write it like const userId = req.params.userId 
         const senderId = req.user._id
 
         //dont sent request to yourself 

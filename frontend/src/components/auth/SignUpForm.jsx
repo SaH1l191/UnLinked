@@ -30,6 +30,7 @@ const SignUpForm = () => {
         },
         onSuccess: () => {
             toast.success("Account created Successfully")
+            queryClient.invalidateQueries("authUser")
         },
         onError: (e) => {
             console.log('we have an error', e)

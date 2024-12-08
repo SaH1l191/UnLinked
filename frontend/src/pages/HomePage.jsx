@@ -38,16 +38,16 @@ const HomePage = () => {
 				{posts?.map((post) => (
 					<Post key={post._id} post={post} />
 				))}
-				
-				{posts?.length===0 && (
+
+				{posts?.length === 0 && (
 					<div className='p-8 text-center bg-white rounded-lg shadow'>
 						<div className='mb-6'>
 							<Users size={64} className='mx-auto text-blue-500' />
 						</div>
 						<h2 className='mb-4 text-2xl font-bold text-gray-800'>No Posts Yet</h2>
 						<p className='mb-6 text-gray-600'>Connect with others to start seeing posts in your feed!</p>
-					</div> 
-					)}
+					</div>
+				)}
 
 			</div>
 
