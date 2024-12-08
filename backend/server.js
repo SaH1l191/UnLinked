@@ -20,10 +20,18 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // CORS configuration (ensure you set the right frontend domain for production)
-app.use(cors({
-    origin: process.env.NODE_ENV === 'production' ? "https://yourfrontenddomain.com" : "http://localhost:3000", // replace with actual frontend domain
-    credentials: true, // Allow cookies and authorization headers
-}));
+if (process.env.NODE_ENV === "production") {
+    const staticDir = path.join(__dirname, "../frontend/dist");
+    app.use(express.static(staticDir));
+
+    // Serve index.html only for non-API requests
+    app.get("*", (req, res, next) => {
+        if (req.originalUrl.startsWith('/api')) {
+            return next(); // Continue with the API routes if it's an API request
+        }
+        res.sendFile(path.resolve(staticDir, "index.html"));
+    });
+}
 
 // Middleware for JSON parsing and cookies
 app.use(express.json({ limit: "50mb" }));
