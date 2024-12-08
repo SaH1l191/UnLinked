@@ -21,7 +21,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production' ? "https://yourfrontenddomain.com" : "http://localhost:3000", 
+    origin: process.env.NODE_ENV === 'production' ? "https://unlinked-b1ye.onrender.com" : "http://localhost:3000", 
     credentials: true,
 }));
 
