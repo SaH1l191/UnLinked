@@ -7,7 +7,6 @@
 
 - **Project Setup**: A fully functional project setup to get started quickly.
 - **MongoDB Integration**: Data storage powered by MongoDB for fast and scalable operations.
-- **Stripe Payment Setup**: Integrated Stripe payments for premium memberships and features.
 - **JWT Authentication**: Secure authentication system using JSON Web Tokens (JWT).
 - **Welcome Emails**: Personalized welcome emails sent to new users using Mailtrap.
 - **Design with Tailwind & DaisyUI**: Beautiful, responsive UI components built with Tailwind CSS and DaisyUI.
