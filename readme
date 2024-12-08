@@ -14,7 +14,7 @@
 - **Connection Requests**: Send, accept, or reject connection requests.
 - **Creating and Sharing Posts**: Users can create and share posts like LinkedIn.
 - **Image Upload for Posts & Profiles**: Upload images for posts and profile pictures via Cloudinary.
-- **Profile Creation & Updates**: Users can create, update, and manage their profiles.
+- **Profile Creation & Updates**: Users can create, update, and manage their profiles. 
 - **Suggested Users Feature**: A list of suggested connections based on user activity and interests.
 - **Like & Comment on Posts**: Like and comment on posts to engage with the community.
 - **News Feed Algorithm**: Custom algorithm to show relevant posts in the user's feed.
