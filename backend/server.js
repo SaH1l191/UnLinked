@@ -7,15 +7,22 @@ import notificationRoutes from './routers/notification.route.js';
 import connectionRoutes from "./routers/connection.route.js";
 import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
-import path from "path";
-import { fileURLToPath } from "url";
+import path from "path"; 
 import cors from 'cors';
 
 dotenv.config();
 
 // Get current directory for static file serving
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.resolve();
+
+if (process.env.NODE_ENV !== "production") {
+	app.use(
+		cors({
+			origin: "http://localhost:5173",
+			credentials: true,
+		})
+	);
+}
 
 const app = express();
 
@@ -38,14 +45,13 @@ app.use("/api/v1/connections", connectionRoutes);
 
 // Serve frontend React app in production
 if (process.env.NODE_ENV === "production") {
-    const staticDir = path.join(__dirname, "../frontend/dist");
-    app.use(express.static(staticDir));
+	app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
-    // Fallback route to serve React's index.html for all other requests (like deep links)
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(staticDir, "index.html"));
-    });
+	app.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+	});
 }
+
 
 // Start server and connect to DB
 const PORT = process.env.PORT || 5000;
