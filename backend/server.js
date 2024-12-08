@@ -9,39 +9,47 @@ import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
-import job from "./cron/cron.js";
-
+import cors from 'cors';
 
 dotenv.config();
+
+// Get current directory for static file serving
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const app = express()
+const app = express();
 
+// CORS configuration (ensure you set the right frontend domain for production)
+app.use(cors({
+    origin: process.env.NODE_ENV === 'production' ? "https://yourfrontenddomain.com" : "http://localhost:3000", // replace with actual frontend domain
+    credentials: true, // Allow cookies and authorization headers
+}));
 
-job.start();
-const PORT = process.env.PORT || 5000;
-
-app.use(express.json({ limit: "50mb" })); 
+// Middleware for JSON parsing and cookies
+app.use(express.json({ limit: "50mb" }));
 app.use(cookieParser());
-app.use("/api/v1/auth", authRoutes)
-app.use("/api/v1/users", userRoutes)
-app.use("/api/v1/posts", postRoutes)
-app.use("/api/v1/notifications", notificationRoutes)
+
+// API routes
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/posts", postRoutes);
+app.use("/api/v1/notifications", notificationRoutes);
 app.use("/api/v1/connections", connectionRoutes);
 
+// Serve frontend React app in production
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+    const staticDir = path.join(__dirname, "../frontend/dist");
+    app.use(express.static(staticDir));
 
-    // React app
+    // Fallback route to serve React's index.html for all other requests (like deep links)
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
+        res.sendFile(path.resolve(staticDir, "index.html"));
     });
 }
 
-
-
+// Start server and connect to DB
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-    connectDB()
-});  
+    connectDB();
+});
