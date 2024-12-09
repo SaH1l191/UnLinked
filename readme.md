@@ -48,15 +48,15 @@ Before you begin, ensure you have the following installed:
 
 ENV-VARS 
 
--PORT=
-MONGO_URI = 
-JWT_SECRET = 
-NODE_ENV=production
-MAILTRAP_TOKEN = 
-EMAIL_FROM = 
-EMAIL_FROM_NAME = 
-CLIENT_URL = http://localhost:5173
-CLOUDINARY_API_KEY = 
-CLOUDINARY_CLOUD_NAME =  
-CLOUDINARY_API_SECRET = 
+- PORT=
+- MONGO_URI = 
+- JWT_SECRET = 
+- NODE_ENV=production
+- MAILTRAP_TOKEN = 
+- EMAIL_FROM = 
+- EMAIL_FROM_NAME = 
+- CLIENT_URL = http://localhost:5173
+- CLOUDINARY_API_KEY = 
+- CLOUDINARY_CLOUD_NAME =  
+- CLOUDINARY_API_SECRET = 
 
