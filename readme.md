@@ -48,7 +48,7 @@ Before you begin, ensure you have the following installed:
 
 ENV-VARS 
 
-PORT=
+-PORT=
 MONGO_URI = 
 JWT_SECRET = 
 NODE_ENV=production
