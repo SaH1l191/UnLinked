@@ -10,6 +10,7 @@ import authRoutes from './routers/auth.route.js'
 import userRoutes from './routers/user.route.js'
 import postRoutes from './routers/post.route.js'
 import { connectDB } from "./lib/db.js";
+import job from "./cron/cron.js";
 
 dotenv.config();
 
@@ -42,6 +43,8 @@ if (process.env.NODE_ENV === "production") {
 		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
 	});
 }
+
+job.start(); 
 
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`);
