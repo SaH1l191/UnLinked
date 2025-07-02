@@ -3,7 +3,7 @@
 
 **UnLinked** is a LinkedIn clone application that replicates the core features of LinkedIn, such as user profiles, social interactions (like, comment, post), connection requests, and more. Built with modern technologies like MongoDB, JWT authentication, Tailwind CSS, and Stripe for payment processing, **UnLinked** offers a comprehensive platform to connect professionals and share updates.
 
-*Live Preview* - https://unlinked-i90z.onrender.com
+*Live Preview* -[ https://unlinked-i90z.onrender.com](https://unlinked-ff2c.onrender.com/home)
 
 
 
