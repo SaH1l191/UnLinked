@@ -1,10 +1,10 @@
 import React from 'react'
 import SignUpForm from '../../components/auth/SignUpForm'
 import { Link } from 'react-router-dom'
-
+ import { FaGoogle } from "react-icons/fa6";
 const SignUpPage = () => {
   return (
-    <div className='min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
+    <div className='flex flex-col justify-center h-auto py-12 sm:px-6 lg:px-8'>
       <div className='mx-auto'>
         <img className='mx-auto h-36' alt='LinkedIn' src={'/logo.svg'} />
         <h2 className='text-center text-3xl font-bold text-gray-900'>
@@ -30,7 +30,7 @@ const SignUpPage = () => {
                 className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-600 bg-white hover:bg-gray-50'
               >
                 Sign in
-              </Link>
+              </Link> 
             </div>
 
           </div>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const LoginPage = () => {
   return (
-    <div className='flex flex-col justify-center min-h-screen py-12 sm:px-6 lg:px-8'>
+    <div className='flex flex-col justify-center h-auto py-12 sm:px-6 lg:px-8'>
     <div className='mx-auto'>
       <img className='mx-auto h-36' alt='LinkedIn' src={'/logo.svg'} />
       <h2 className='text-3xl font-bold text-center text-gray-900'>
@@ -25,7 +25,7 @@ const LoginPage = () => {
               <span className='px-2 text-gray-500 bg-white'>Already on LinkedIn?</span>
             </div>
           </div>
-          <div className='mt-6'>
+          <div className=''>
             <Link
               to='/login'
               className='flex justify-center w-full px-4 py-2 text-sm font-medium text-blue-600 bg-white border border-transparent rounded-md shadow-sm hover:bg-gray-50'

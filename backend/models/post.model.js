@@ -25,7 +25,15 @@ const postSchema = new mongoose.Schema({
             ref: "User",
         },
         createdAt: { type: Date, default: Date.now() },
-    }]
+    }],
+    views : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    impressions :{
+        type : Number,
+        default: 0 
+    }
 },
     { timestamps: true })
 

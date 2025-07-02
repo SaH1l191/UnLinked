@@ -12,6 +12,7 @@ const PostPage = () => {
 		queryKey: ["post", postId],
 		queryFn: () => axiosInstance.get(`/posts/${postId}`),
 	});
+	console.log("posts ",post)
 
 	if (isLoading) return <div>Loading post...</div>;
 	if (!post?.data) return <div>Post not found</div>;
@@ -22,7 +23,7 @@ const PostPage = () => {
 				<Sidebar user={authUser} />
 			</div>
 
-			<div className='col-span-1 lg:col-span-3'>
+			<div className='col-span-1 lg:col-span-2'>
 				<Post post={post.data} />
 			</div>
 		</div>

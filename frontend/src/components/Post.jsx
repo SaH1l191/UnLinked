@@ -2,22 +2,23 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Loader, MessageCircle, Send, Share2, ThumbsUp, Trash2 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
 import PostAction from "./PostAction";
 
 const Post = ({ post }) => {
-	const { postId } = useParams();
-
-	const { data: authUser } = useQuery({ queryKey: ["authUser"] });
-	const [showComments, setShowComments] = useState(false);
-	const [newComment, setNewComment] = useState("");
-	const [comments, setComments] = useState(post.comments || []);
-	const isOwner = authUser._id === post.author._id;
-	const isLiked = post.likes.includes(authUser._id);
-
+    const { postId } = useParams();
+    const { data: authUser } = useQuery({ queryKey: ["authUser"] });
+    const [showComments, setShowComments] = useState(false);
+    const [newComment, setNewComment] = useState("");
+    const [comments, setComments] = useState(post.comments || []);
+    const isOwner = authUser._id === post.author._id;
+    const isLiked = post.likes.includes(authUser._id);
+    const viewersToShow = post.views || [];
+	console.log(viewersToShow,"viewers")
+	const navigate =useNavigate()
 	const queryClient = useQueryClient();
 
 	const { mutate: deletePost, isPending: isDeletingPost } = useMutation({
@@ -59,6 +60,7 @@ const Post = ({ post }) => {
 	const handleDeletePost = () => {
 		if (!window.confirm("Are you sure you want to delete this post?")) return;
 		deletePost();
+		navigate('/')
 	};
 
 	const handleLikePost = async () => {
@@ -115,8 +117,41 @@ const Post = ({ post }) => {
 						</button>
 					)}
 				</div>
-				<p className='mb-4'>{post.content}</p>
+				<Link to={`/post/${post._id}`}>	<p className='mb-4'>{post.content}</p></Link>
+
 				{post.image && <img src={post.image} alt='Post content' className='w-full mb-4 rounded-lg' />}
+
+				{/* Show impressions and viewers only to the owner */}
+				{isOwner && (
+					<div className="mb-3 flex items-center justify-between mt-2 text-xs text-gray-500">
+						<div>
+							<span>Impressions: {post.impressions || 0}</span>
+						</div>
+						<div className="flex items-center">
+							<span className="mr-2">Viewed by:</span>
+							{viewersToShow.length === 0 ? (
+								<span>No viewers yet</span>
+							) : (
+								viewersToShow.filter(user => user._id !== authUser._id).map((user) =>
+									 (
+										<Link to={`/profile/${user.username}`} key={user._id}>
+										<img
+											key={user._id}
+											src={user.profilePicture || "/avatar.png"}
+											alt={user.name}
+											title={user.name}
+											className="w-6 h-6 rounded-full "
+										/>
+										</Link>
+									) 
+								)
+							)}
+							{post.views && post.views.length > 5 && (
+								<span className="ml-2">+{post.views.length - 5} more</span>
+							)}
+						</div>
+					</div>
+				)}
 
 				<div className='flex justify-between text-info'>
 					<PostAction
@@ -130,8 +165,13 @@ const Post = ({ post }) => {
 						text={`Comment (${comments.length})`}
 						onClick={() => setShowComments(!showComments)}
 					/>
+
+
 					<PostAction icon={<Share2 size={18} />} text='Share' />
 				</div>
+
+
+
 			</div>
 
 			{showComments && (

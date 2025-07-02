@@ -2,6 +2,7 @@ import Post from "../models/post.model.js";
 import cloudinary from '../lib/cloudinary.js'
 import Notification from "../models/notification.model.js";
 import { sendCommentNotificationEmail } from "../emails/emailHandlers.js";
+import User from "../models/user.model.js";
 
 export const getFeedPosts = async (req, res) => {
     try {
@@ -10,8 +11,8 @@ export const getFeedPosts = async (req, res) => {
             .populate("author", "name headline profileProfile username")
             //going under the author of the post and populating the author of post ,name ,profilePicture
             .populate("comments.user", "name profilePicture").sort({ createdAt: -1 })
-        //going under comments.user and populating that users name profilePicture +latest post first
-
+            //going under comments.user and populating that users name profilePicture +latest post first
+            .populate("views", "name profilePicture username");
         res.status(200).json({ posts })
 
 
@@ -81,9 +82,27 @@ export const deletePost = async (req, res) => {
 export const getPostById = async (req, res) => {
     try {
         const postId = req.params.id;
-        const post = await Post.findById(postId)
+        const userId = req.user._id;
+
+        // Find the post first
+        let post = await Post.findById(postId);
+
+        if (!post) {
+            return res.status(404).json({ message: "Post not found" });
+        }
+
+        // Only increment impressions and add to views if user hasn't viewed before
+        if (!post.views.some(id => id.toString() === userId.toString())) {
+            post.impressions += 1;
+            post.views.push(userId);
+            await post.save();
+        }
+
+        // Populate after possible update
+        post = await Post.findById(postId)
             .populate("author", "name username profilePicture headline")
-            .populate("comments.user", "name profilePicture username headline");
+            .populate("comments.user", "name profilePicture username headline")
+            .populate("views", "name profilePicture username");
 
         res.status(200).json(post);
     }
@@ -186,3 +205,22 @@ export const likePost = async (req, res) => {
         return res.status(500).json({ message: "Internal Server Error" })
     }
 }
+
+
+export const getUserPosts = async (req, res) => {
+    try {
+        const { username } = req.params
+        const user = await User.findOne({ username })
+        if (!user) return res.status(404).json({ message: "User not found" })
+
+        const posts = await Post.find({ author: user._id })
+            .populate("author", "name headline profilePicture username")
+            .populate("comments.user", "name profilePicture username headline")
+            .populate("views", "name profilePicture username")
+            .sort({ createdAt: -1 });
+
+        res.status(200).json({ posts })
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server Error" })
+    }
+} 

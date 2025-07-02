@@ -7,7 +7,7 @@ export const getSuggestedConnections = async (req, res) => {
         //we want to fetch all the random suggested connections 
         // should not include ourselves and the already connected users
 
-        console.log("logging req.user => ", req.user)
+        // console.log("logging req.user => ", req.user)
         const currentUser = await User.findById(req.user._id).select("connections")
 
         const suggestedConnections = await User.find({

@@ -5,26 +5,15 @@ import { sendWelcomeEmail } from "../emails/emailHandlers.js";
 
 export const signup = async (req, res) => {
     try {
-
-        if (!req.body) {
-            return res.status(400).json({ message: "Request body is missing" });
-        }
-
-
         const { name, username, email, password } = req.body;
 
         if (!name || !username || !email || !password) {
             return res.status(400).json({ message: "All fields are required" })
         }
-
-
-
         const existingUserEmail = await User.findOne({ email })
         if (existingUserEmail) {
             return res.status(400).json({ message: "Email already exists" })
         }
-
-
         const existingUserUsername = await User.findOne({ username })
         if (existingUserUsername) {
             return res.status(400).json({ message: "Username already exists" })
@@ -44,7 +33,7 @@ export const signup = async (req, res) => {
 
         // now will generate a token  payload,secret,options
         const token = await jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-            expiresIn: "3d"
+            expiresIn: "3d" 
         })
         res.cookie("jwt-token", token, {
             httpOnly: true, //used to prevent XSS attack 

@@ -8,6 +8,7 @@ import AboutSection from "../components/AboutSection";
 import ExperienceSection from "../components/ExperienceSection";
 import EducationSection from "../components/EducationSection";
 import SkillsSection from "../components/SkillsSection";
+import UserPosts from '../components/UserPosts';
 
 const ProfilePage = () => {
 
@@ -51,6 +52,7 @@ const ProfilePage = () => {
 			<ExperienceSection userData={userData} isOwnProfile={isOwnProfile} onSave={handleSave} />
 			<EducationSection userData={userData} isOwnProfile={isOwnProfile} onSave={handleSave} />
 			<SkillsSection userData={userData} isOwnProfile={isOwnProfile} onSave={handleSave} />
+            <UserPosts username={userData.username} />
         </div>
     )
 }

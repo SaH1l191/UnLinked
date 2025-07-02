@@ -1,6 +1,6 @@
 import express from "express";
 import { protectRoute } from "../middleware/auth.middleware.js";
-import { getFeedPosts, createPost,createComment, deletePost, getPostById ,likePost} from "../controllers/post.controller.js";
+import { getFeedPosts, createPost,createComment, deletePost, getPostById ,likePost, getUserPosts} from "../controllers/post.controller.js";
 
 const router = express.Router();
 
@@ -8,9 +8,10 @@ const router = express.Router();
 
 router.get("/", protectRoute, getFeedPosts)
 router.post("/create", protectRoute, createPost)
-router.delete("/delete/:id", deletePost)
+router.delete("/delete/:id",protectRoute, deletePost)
+router.get('/user/:username', protectRoute, getUserPosts);
 router.get("/:id", protectRoute, getPostById)
 router.post("/:id/comment", protectRoute, createComment)
-router.post("/:id/like", protectRoute, likePost)
+router.post("/:id/like", protectRoute, likePost) 
 export default router
 
