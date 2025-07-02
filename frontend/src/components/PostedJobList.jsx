@@ -1,3 +1,4 @@
+import { Briefcase } from "lucide-react";
 import PostedJobCard from "./PostedJobCard";
 
 const PostedJobsList = ({
@@ -9,10 +10,10 @@ const PostedJobsList = ({
     onShowJobModal,
 }) => (
     <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-6">
+        <div className="bg-[#333639] px-8 py-6">
             <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/20 rounded-lg">
-                    <svg className="w-6 h-6 text-white"><use href="#briefcase" /></svg>
+                   <Briefcase className="w-6 h-6 text-white" />
                 </div>
                 <div>
                     <h2 className="text-2xl font-bold text-white">Your Posted Jobs</h2>
