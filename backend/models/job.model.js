@@ -3,10 +3,9 @@ import mongoose from "mongoose";
 const applicantSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   resumeLink: { type: String },
-  coverLetter: { type: String },
   status: {
     type: String,
-    enum: ["applied", "shortlisted", "rejected", "hired"],
+    enum: ["applied", "shortlisted", "rejected"],
     default: "applied"
   },
   appliedAt: { type: Date, default: Date.now }
@@ -18,6 +17,7 @@ const jobSchema = new mongoose.Schema({
   location: String,
   description: String,
   requirements: [String],
+  image : String,
   postedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   applicants: [applicantSchema],
   createdAt: { type: Date, default: Date.now }

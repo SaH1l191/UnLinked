@@ -47,13 +47,13 @@ export const signup = async (req, res) => {
         //now sending a welcome email to the user 
         //frontend URL
         //in deployment mode it would be actual URL of Unlinked 
-        const profileUrl = process.env.CLIENT_URL + "/profile/" + user.username;
-        try {
-            await sendWelcomeEmail(user.email, user.name, profileUrl)
-        }
-        catch (error) {
-            console.log("Error while sending the welcome email", error.message)
-        }
+        // const profileUrl = process.env.CLIENT_URL + "/profile/" + user.username;
+        // try {
+        //     await sendWelcomeEmail(user.email, user.name, profileUrl)
+        // }
+        // catch (error) {
+        //     console.log("Error while sending the welcome email", error.message)
+        // }
     }
     catch (error) {
         console.log(error.message)

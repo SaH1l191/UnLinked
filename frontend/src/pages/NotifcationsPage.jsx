@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import React from 'react'
 import { axiosInstance } from '../lib/axios'
-import { ExternalLink, Eye, MessageSquare, ThumbsUp, Trash, Trash2, UserPlus } from 'lucide-react'
+import { Briefcase, ExternalLink, Eye, MessageSquare, ThumbsUp, Trash, Trash2, UserPlus } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import { formatDistanceToNow } from 'date-fns'
@@ -13,7 +13,7 @@ export default function NotifcationsPage() {
 
     const { data: notifications, isLoading } = useQuery({
         queryKey: ["notifications"],
-        queryFn: () => axiosInstance.get("/notifications")
+        queryFn: () => axiosInstance.get("/notifications"),
     })
     const { mutate: markAsReadMutation } = useMutation({
         mutationFn: (id) => axiosInstance.put(`/notifications/${id}/read`),
@@ -37,6 +37,11 @@ export default function NotifcationsPage() {
                 return <MessageSquare className='text-green-500' />
             case "connectionAccepted":
                 return <UserPlus className='text-purple-500' />;
+            case "jobStatus":
+                return <Briefcase className='text-teal-500' />;
+            // If you add jobPosted:
+            case "jobPosted":
+                return <Briefcase className='text-blue-500' />;
             default:
                 return null;
         }
@@ -47,7 +52,7 @@ export default function NotifcationsPage() {
             case "like":
                 return (
                     <span>
-                        <strong>{notification.relatedUser.name}</strong> liked your Post !
+                        <strong>{notification.relatedUser.name}</strong> liked your Post!
                     </span>
                 )
             case "comment":
@@ -66,6 +71,19 @@ export default function NotifcationsPage() {
                             {notification.relatedUser.name}
                         </Link>{" "}
                         accepted your connection request
+                    </span>
+                );
+            case "jobStatus":
+                return (
+                    <span>
+                        <strong>{notification.relatedUser.name}</strong> updated your job application status!
+                    </span>
+                );
+            // If you add jobPosted:
+            case "jobPosted":
+                return (
+                    <span>
+                        <strong>{notification.relatedUser.name}</strong> posted a new job!
                     </span>
                 );
             default:

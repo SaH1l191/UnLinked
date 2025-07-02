@@ -11,7 +11,9 @@ const NetworkPage = () => {
     const { data: user } = useQuery({ queryKey: ["authUser"] })
     const { data: connectionRequests } = useQuery({
         queryKey: ["connectionRequests"],
-        queryFn: () => axiosInstance.get("/connections/requests")
+        queryFn: () => axiosInstance.get("/connections/requests"),
+		refetchInterval : 5000,
+		// refetchIntervalInBackground: true, 
     })
 
     const { data: connections } = useQuery({

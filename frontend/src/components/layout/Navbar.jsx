@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "../../lib/axios";
 import { Link } from "react-router-dom";
-import { Bell, Home, LogOut, User, Users } from "lucide-react";
+import { Bell, Home, LogOut, User, Users, Briefcase } from "lucide-react";
 
 const Navbar = () => {
 	const { data: authUser } = useQuery({ queryKey: ["authUser"] });
@@ -11,6 +11,8 @@ const Navbar = () => {
 		queryKey: ["notifications"],
 		queryFn: async () => axiosInstance.get("/notifications"),
 		enabled: !!authUser,
+		refetchInterval: 5000, // Poll every 5 seconds
+		refetchIntervalInBackground: true, // Poll even when tab is not focused
 	});
 
 	const { data: connectionRequests } = useQuery({
@@ -44,6 +46,10 @@ const Navbar = () => {
 								<Link to={"/"} className='flex flex-col items-center text-neutral'>
 									<Home size={20} />
 									<span className='hidden text-xs md:block'>Home</span>
+								</Link>
+								<Link to={"/jobs"} className='flex flex-col items-center text-neutral'>
+									<Briefcase size={20} />
+									<span className='hidden text-xs md:block'>Jobs</span>
 								</Link>
 								<Link to='/network' className='relative flex flex-col items-center text-neutral'>
 									<Users size={20} />

@@ -13,13 +13,14 @@ import NetworkPage from "./pages/NetworkPage";
 import ProfilePage from "./pages/ProfilePage";
 import Home from "./pages/Home";
 import NotFoundPage from "./pages/NotFound";	
+import Jobs from "./pages/Jobs";
 function App() {
 	const { data: authUser, isLoading } = useQuery({
 		queryKey: ["authUser"],
 		queryFn: async () => {
 			try {
 				const res = await axiosInstance.get("/auth/me");
-				console.log('logging res => auth user   = > ', res)
+				// console.log('logging res => auth user   = > ', res)
 				return res.data;
 			} catch (err) {
 				if (err.response && err.response.status === 401) {
@@ -38,6 +39,7 @@ function App() {
 				<Route path="*" element={<NotFoundPage/>} />
 				<Route path='/' element={authUser ? <HomePage /> : <Navigate to={"/home"} />} />
 				<Route path='/home' element={<Home/>} />
+				<Route path='/jobs' element={authUser ? <Jobs/> : <Navigate to={"/jobs"} />} />
 				<Route path='/signup' element={!authUser ? <SignUpPage /> : <Navigate to={"/"} />} />
 				<Route path='/login' element={!authUser ? <LoginPage /> : <Navigate to={"/"} />} />
 				<Route path='/notifications' element={authUser ? <NotifcationsPage /> : <Navigate to={"/login"} />} />
