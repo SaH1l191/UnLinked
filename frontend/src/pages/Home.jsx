@@ -1,7 +1,7 @@
 
 const Home = () => {
-  
- 
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br ">
@@ -21,8 +21,10 @@ const Home = () => {
             </div>
 
             <div className="space-y-4">
-              <a href="http://localhost:4000/api/v1/auth/google"
-              className="w-full max-w-md bg-white text-slate-800 border-2 border-slate-300 hover:border-lime-600 hover:bg-lime-50 rounded-full py-4 px-8 font-semibold transition-all duration-300 shadow-lg hover:shadow-xl">
+              <a
+                href="https://unlinked-ff2c.onrender.com/api/v1/auth/google"
+                className="w-full max-w-md bg-white text-slate-800 border-2 border-slate-300 hover:border-lime-600 hover:bg-lime-50 rounded-full py-4 px-8 font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
                 Sign in with Google
               </a>
               <p className="text-xs text-slate-500">By clicking Sign in, you agree to our Terms and Privacy Policy</p>
@@ -124,7 +126,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      </div>
+    </div>
   )
 }
 
