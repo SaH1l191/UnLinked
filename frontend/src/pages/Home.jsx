@@ -1,12 +1,7 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-  const navigate =useNavigate()
-
-  const handleNavigate=()=>{
-    navigate('/api/v1/auth/google')
-  }
+  
+ 
 
   return (
     <div className="min-h-screen bg-gradient-to-br ">
