@@ -63,7 +63,7 @@ const Jobs = () => {
         <div className="min-h-screen ">
             <div className="container mx-auto px-4 py-6">
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
-                    <div className="col-span-1 lg:col-span-1">
+                    <div className="col-span-1 lg:col-span-1 overflow-hidden">
                         <div className="sticky top-6">
                             <Sidebar user={user} />
                         </div>
@@ -86,6 +86,7 @@ const Jobs = () => {
 
                             ) : (
                                 <ListJobs />
+                                // <></>
                             )}
                         </div>
 
