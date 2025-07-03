@@ -1,62 +1,38 @@
+# UnLinked – Professional Networking & Job Platform
 
-# UnLinked - Grow Your Professional Network
+UnLinked is a full-stack web application inspired by LinkedIn, built with the MERN stack (MongoDB, Express, React, Node.js). It enables users to connect, share posts, manage professional profiles, and apply for jobs.
 
-**UnLinked** is a LinkedIn clone application that replicates the core features of LinkedIn, such as user profiles, social interactions (like, comment, post), connection requests, and more. Built with modern technologies like MongoDB, JWT authentication, Tailwind CSS, and Stripe for payment processing, **UnLinked** offers a comprehensive platform to connect professionals and share updates.
-
-*Live Preview* -[ https://unlinked-i90z.onrender.com](https://unlinked-ff2c.onrender.com/home)
-
-
-
-
-![image](https://github.com/user-attachments/assets/fccea4e5-44f3-4b7e-9393-ce40df897674)
+---
 
 ## 🚀 Features
 
-- **Project Setup**: A fully functional project setup to get started quickly.
-- **MongoDB Integration**: Data storage powered by MongoDB for fast and scalable operations.
-- **JWT Authentication**: Secure authentication system using JSON Web Tokens (JWT).
-- **Welcome Emails**: Personalized welcome emails sent to new users using Mailtrap.
-- **Design with Tailwind & DaisyUI**: Beautiful, responsive UI components built with Tailwind CSS and DaisyUI.
-- **Data Protection**: Robust data protection mechanisms ensuring user privacy and security.
-- **Connection Requests**: Send, accept, or reject connection requests.
-- **Creating and Sharing Posts**: Users can create and share posts like LinkedIn.
-- **Image Upload for Posts & Profiles**: Upload images for posts and profile pictures via Cloudinary.
-- **Profile Creation & Updates**: Users can create, update, and manage their profiles.
-- **Suggested Users Feature**: A list of suggested connections based on user activity and interests.
-- **Like & Comment on Posts**: Like and comment on posts to engage with the community.
-- **News Feed Algorithm**: Custom algorithm to show relevant posts in the user's feed.
-- **And Much More**: Tons of additional features for a full networking experience.
+- **Authentication**
+  - Email/password signup & login
+  - Google OAuth login
+- **User Profiles**
+  - Editable profile with photo, headline, about, skills, education, and experience
+- **Networking**
+  - Send, accept, and reject connection requests
+  - View and manage your network
+- **Feed & Posts**
+  - Create, like, comment, and delete posts
+  - Real-time notifications for likes, comments, and connections
+- **Jobs**
+  - Recruiters can post jobs and manage applicants
+  - Users can browse and apply to jobs with resume links
+  - Application status tracking (applied, shortlisted, rejected)
+- **Responsive UI**
+  - Modern, mobile-friendly design using Tailwind CSS and DaisyUI
 
-## 🔧 Prerequisites
+---
 
-Before you begin, ensure you have the following installed:
+## 🏗️ Tech Stack
 
-- **Node.js** (v14 or later)
-- **npm** (Node Package Manager)
-- **MongoDB Atlas** or a local MongoDB instance
-- **Stripe Account** (for payment integration)
-- **Cloudinary Account** (for image uploading)
+- **Frontend:** React, Vite, Tailwind CSS, DaisyUI, React Query, React Router
+- **Backend:** Node.js, Express, MongoDB, Mongoose, Passport.js (Google OAuth)
+- **Email:** Mailtrap (for development/testing)
+- **Deployment:** Render (backend), Vercel/Netlify (frontend) or served from backend in production
 
-## 🛠️ Setup Instructions
+---
 
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/your-username/unlinked.git
-   cd unlinked
-
-
-ENV-VARS 
-
-- PORT=
-- MONGO_URI = 
-- JWT_SECRET = 
-- NODE_ENV=production
-- MAILTRAP_TOKEN = 
-- EMAIL_FROM = 
-- EMAIL_FROM_NAME = 
-- CLIENT_URL = 
-- CLOUDINARY_API_KEY = 
-- CLOUDINARY_CLOUD_NAME =  
-- CLOUDINARY_API_SECRET = 
-
+## 📦 Project Structure
