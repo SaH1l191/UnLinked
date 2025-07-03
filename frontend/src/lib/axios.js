@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-    baseURL: "http://localhost:4000/api/v1/", // for local dev
+    baseURL: "/api/v1/", // for local dev
     withCredentials: true,
 });
